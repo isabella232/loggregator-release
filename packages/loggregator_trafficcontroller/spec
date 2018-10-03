@@ -3,11 +3,12 @@ name: loggregator_trafficcontroller
 dependencies:
 - golang1.10.3
 files:
+- code.cloudfoundry.org/go-diodes/*.go # gosub
 - code.cloudfoundry.org/go-envstruct/*.go # gosub
 - code.cloudfoundry.org/go-log-cache/*.go # gosub
 - code.cloudfoundry.org/go-log-cache/rpc/logcache_v1/*.go # gosub
+- code.cloudfoundry.org/go-loggregator/*.go # gosub
 - code.cloudfoundry.org/go-loggregator/rpc/loggregator_v2/*.go # gosub
-- code.cloudfoundry.org/grpc-throughputlb/*.go # gosub
 - code.cloudfoundry.org/loggregator/healthendpoint/*.go # gosub
 - code.cloudfoundry.org/loggregator/metricemitter/*.go # gosub
 - code.cloudfoundry.org/loggregator/plumbing/*.go # gosub

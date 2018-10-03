@@ -1,12 +1,5 @@
 <%
-    router_addrs = []
-
-    if_link("doppler") do |ds|
-        router_addrs = ds.instances.map{|i| "#{i.address}:#{ds.p('doppler.grpc_port')}"}
-    end.else do
-        paddrs = p("loggregator.doppler.addrs")
-        router_addrs = paddrs.map{|addr| "#{addr}:#{p('doppler.grpc_port')}"}
-    end
+    log_api = link('reverse_log_proxy')
 
     # Handle renamed properties
     uaa_client = p("loggregator.uaa.client")
@@ -25,10 +18,10 @@ processes:
         AGENT_UDP_ADDRESS: "<%= p('metron_endpoint.host').to_s + ":" + p('metron_endpoint.dropsonde_port').to_s %>"
         AGENT_GRPC_ADDRESS: "<%= p('metron_endpoint.host').to_s + ":" + p('metron_endpoint.grpc_port').to_s %>"
 
-        ROUTER_ADDRS: "<%= router_addrs.join(",") %>"
-        ROUTER_CA_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/loggregator_ca.crt"
-        ROUTER_CERT_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/trafficcontroller.crt"
-        ROUTER_KEY_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/trafficcontroller.key"
+        LOG_API_ADDR: "127.0.0.1:<%= log_api.p('reverse_log_proxy.egress.port') %>"
+        LOG_API_CA_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/loggregator_ca.crt"
+        LOG_API_CERT_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/trafficcontroller.crt"
+        LOG_API_KEY_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/trafficcontroller.key"
 
         CC_CERT_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/cc_trafficcontroller.crt"
         CC_KEY_FILE: "/var/vcap/jobs/loggregator_trafficcontroller/config/certs/cc_trafficcontroller.key"

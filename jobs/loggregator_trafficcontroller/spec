@@ -26,12 +26,12 @@ provides:
   - loggregator.outgoing_dropsonde_port
 
 consumes:
-- name: doppler
-  type: doppler
-  optional: true
 - name: log-cache
   type: log-cache
   optional: true
+- name: reverse_log_proxy
+  type: reverse_log_proxy
+  optional: false
 
 properties:
   traffic_controller.disable_access_control:
@@ -70,13 +70,6 @@ properties:
   logcache.tls.server_name:
     description: "The common name of the Log Cache server"
     default: "log-cache"
-
-  loggregator.doppler.addrs:
-    description: "The addresses of Dopplers (alternative to doppler link)"
-    default: []
-  doppler.grpc_port:
-    description: Port for outgoing log messages via GRPC
-    default: 8082
 
   metron_endpoint.host:
     description: "The host used to emit messages to the Metron agent"

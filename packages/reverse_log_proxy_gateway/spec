@@ -8,7 +8,6 @@ files:
 - code.cloudfoundry.org/go-envstruct/*.go # gosub
 - code.cloudfoundry.org/go-loggregator/rpc/loggregator_v2/*.go # gosub
 - code.cloudfoundry.org/grpc-throughputlb/*.go # gosub
-- code.cloudfoundry.org/loggregator/metricemitter/*.go # gosub
 - code.cloudfoundry.org/loggregator/plumbing/*.go # gosub
 - code.cloudfoundry.org/loggregator/profiler/*.go # gosub
 - code.cloudfoundry.org/loggregator/rlp-gateway/*.go # gosub
