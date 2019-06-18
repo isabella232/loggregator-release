@@ -1,0 +1,20 @@
+---
+- type: replace
+  path: /instance_groups/name=syslog-smoke-tests?
+  value:
+    azs:
+    - z1
+    name: syslog-smoke-tests
+    networks:
+    - name: default
+    stemcell: default
+    update:
+      serial: true
+    vm_type: minimal
+    instances: 1
+    jobs:
+    - name: syslog_smoke_tests
+      release: loggregator
+      properties:
+        syslog_smoke_tests:
+          datadog_api_key: "(( datadog-loggregator-api-key ))"

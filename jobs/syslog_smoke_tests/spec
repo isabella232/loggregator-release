@@ -1,0 +1,23 @@
+---
+name: syslog_smoke_tests
+
+templates:
+  bpm.yml.erb: config/bpm.yml
+
+packages:
+- counter
+
+properties:
+  syslog_smoke_tests.tcp_port:
+    description: Port for incoming log messages via TCP
+    default: 8081
+  syslog_smoke_tests.http_port:
+    description: Port for incoming log messages via HTTP
+    default: 8080
+  syslog_smoke_tests.tags:
+    description: Comma-delimited string of tags for Datadog
+  syslog_smoke_tests.datadog_api_key:
+    description: API key to submit metrics and events to Datadog.
+  syslog_smoke_tests.counter_interval:
+    description: The interval at which to send logs to Datadog
+    default: 60s

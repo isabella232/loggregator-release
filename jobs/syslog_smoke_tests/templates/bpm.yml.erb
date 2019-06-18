@@ -1,0 +1,8 @@
+processes:
+  - name: syslog_smoke_tests
+    executable: /var/vcap/packages/counter/counter
+    env:
+      TCP_PORT: "<%=  p("syslog_smoke_tests.tcp_port") %>"
+      HTTP_PORT: "<%=  p("syslog_smoke_tests.http_port") %>"
+      DATADOG_API_KEY: "<%= p("syslog_smoke_tests.datadog_api_key") %>"
+      COUNTER_INTERVAL: "<%=  p("syslog_smoke_tests.counter_interval") %>"

@@ -1,0 +1,5 @@
+check process syslog_smoke_tests
+  with pidfile /var/vcap/sys/run/bpm/syslog_smoke_tests/syslog_smoke_tests.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start syslog_smoke_tests"
+  stop program "/var/vcap/jobs/bpm/bin/bpm stop syslog_smoke_tests" with timeout 60 seconds
+  group vcap
